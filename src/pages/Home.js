@@ -1,7 +1,13 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from "./Home.module.css"
 
-import { decode_str, sync_file } from '../utils/encode.mjs'
+import encode from '../utils/encode.mjs'
+
+const sampleObj = {
+    "website": "Spotify",
+    "username": "username",
+    "password": "password"
+}
 
 const Home = () => {
     const [enteredPassword, setEnteredPassword] = useState("")

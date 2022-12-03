@@ -1,19 +1,15 @@
 import crypto from 'crypto'
 import fernet from 'fernet'
 
-const fs = window.require('fs');
+const fs = window.require('original-fs');
 const path = window.require('path');
+
+const encryption_file_path = path.join(__dirname, '../../../../../../src/encryption.txt')
 
 const key_to_index = {
     0: "website",
     1: "username",
     2: "password"
-}
-
-const sampleObj = {
-    "website": "Spotify",
-    "username": "username",
-    "password": "password"
 }
 
 const getSecret = (password) => {
@@ -53,6 +49,10 @@ const encode_obj = ({
     }) =>
     `${website.length}#${website}${username.length}#${username}${password.length}#${password}`
 
+const my_error = Object.assign(new Error("Invalid Decoding"), {
+    code: 402
+})
+
 const decode_str = (encoding) => {
     let res = []
     let i = 0
@@ -60,13 +60,16 @@ const decode_str = (encoding) => {
         let obj = {}
         for (let j = 0; j < 3; j++) {
             let curr_length = 0
+            if (isNaN(encoding[i])) throw my_error
             while (encoding[i] !== "#") {
                 curr_length = curr_length * 10 + Number(encoding[i])
                 i = i + 1
             }
+            if (encoding[i] !== "#") throw my_error
             i = i + 1 // consume #
             obj[key_to_index[j]] = encoding.substring(i, i + curr_length)
             i = i + curr_length
+            if (i > encoding.length) throw my_error
         }
         res.push({
             ...obj
@@ -76,16 +79,27 @@ const decode_str = (encoding) => {
 }
 
 const sync_file = (arr, password) => { // array of objects
-    const myConsole = new console.Console(fs.createWriteStream(path.join(__dirname, '../encryption.txt')))
     const encoding = arr.reduce((acc, e) => `${acc}${encode_obj(e)}`, "")
-    myConsole.log(encrypt(password, encoding))
+    fs.writeFileSync(encryption_file_path, encrypt(password, encoding));
 }
 
-const decrypt_file = () => {
-
+const decrypt_file = (password) => {
+    const encoded_message = fs.readFileSync(encryption_file_path, {
+        encoding: 'utf8'
+    })
+    try {
+        const decoded_message = decrypt(password, encoded_message)
+        return decode_str(decoded_message)
+    } catch (err) {
+        console.warn(err)
+        return "Invalid Password"
+    }
 }
 
-export default {
+const my_export = {
     decode_str,
-    sync_file
+    sync_file,
+    decrypt_file
 }
+
+export default my_export
