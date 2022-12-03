@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import encode from "../utils/encode.mjs";
-import DetailCard from "../components/DetailCard.js";
+import AddAccountForm from "../components/AddAccountForm.js";
 const AccountDetails = () => {
+    // FIXME: better way to store password? password is null upon any reload
     const { state } = useLocation();
     const { password } = state;
 
-    // TODO: use password to render account details
     const detailsList = encode.decrypt_file(password);
 
     return (
@@ -20,8 +20,10 @@ const AccountDetails = () => {
                               {e.website}|{e.username}|{e.password}
                           </div>
                       ))
-                    : "NO"}
+                    : detailsList}
             </div>
+            <br />
+            <AddAccountForm />
         </>
     );
 };
