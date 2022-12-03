@@ -16,9 +16,11 @@ const Home = () => {
     const formSubmitHandler = (e) => {
         e.preventDefault(); // prevents page from reloading
 
-        // TODO: form validation - empty input
-
-        navigate("/account-details", { state: { password: enteredPassword } });
+        if (enteredPassword.trim().length > 0) {
+            navigate("/account-details", {
+                state: { password: enteredPassword },
+            });
+        }
     };
 
     return (
