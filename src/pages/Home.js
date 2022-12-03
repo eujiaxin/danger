@@ -1,19 +1,19 @@
-import { useState } from "react";
-import styles from "./Home.module.css";
+import { useState } from "react"
+import styles from "./Home.module.css"
 
 const Home = () => {
-    const [enteredPassword, setEnteredPassword] = useState("");
+    const [enteredPassword, setEnteredPassword] = useState("")
 
     const passwordChangeHandler = (e) => {
-        setEnteredPassword(e.target.value);
+        setEnteredPassword(e.target.value)
     };
 
     const formSubmitHandler = (e) => {
-        e.preventDefault(); // prevents page from reloading
+        e.preventDefault() // prevents page from reloading
 
         // TODO: form validation - empty input
-        // redirectToPage(password); // seems dangerous to do this???
-    };
+        // redirectToPage(password) // seems dangerous to do this???
+    }
 
     return (
         <>
@@ -24,7 +24,7 @@ const Home = () => {
             />
             <span className={styles.centered2}>{enteredPassword}</span>
         </>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home
