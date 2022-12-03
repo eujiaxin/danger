@@ -1,6 +1,8 @@
 import { useState } from "react"
 import styles from "./Home.module.css"
 
+import { decode_str, sync_file } from '../utils/encode.mjs'
+
 const Home = () => {
     const [enteredPassword, setEnteredPassword] = useState("")
 
