@@ -88,6 +88,7 @@ const decrypt_file = (password) => {
         encoding: 'utf8'
     })
     try {
+        if (encoded_message.length === 0) return []
         const decoded_message = decrypt(password, encoded_message)
         return decode_str(decoded_message)
     } catch (err) {
