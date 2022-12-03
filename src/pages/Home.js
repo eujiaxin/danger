@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
 
-import encode from '../utils/encode.mjs'
-
 const Home = () => {
     const [enteredPassword, setEnteredPassword] = useState("");
 
