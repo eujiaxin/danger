@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# encryption file for account details
+/src/encryption.txt
+
 # dependencies
 /node_modules
 /.pnp
