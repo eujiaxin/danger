@@ -1,5 +1,7 @@
 import { useState } from "react";
-const AddAccountForm = () => {
+import encode from "../utils/encode.mjs";
+
+const AddAccountForm = (props) => {
     const [website, setWebsite] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -17,21 +19,48 @@ const AddAccountForm = () => {
     };
 
     const formSubmitHandler = (e) => {
+        e.preventDefault();
+
+        if (
+            website.length === 0 ||
+            username.length === 0 ||
+            password.length === 0
+        ) {
+            return;
+        }
+
         const account = {
             website: website,
             username: username,
             password: password,
         };
+        const newAccounts = [account, ...props.accounts];
+        encode.sync_file(newAccounts, props.password);
+        props.setAccounts(encode.decrypt_file(props.password));
 
-        console.log(account); // TODO: check if this is correct + use account information to write to text file
+        setWebsite("");
+        setUsername("");
+        setPassword("");
     };
     return (
         <form onSubmit={formSubmitHandler}>
-            <input type="text" onChange={websiteChangeHandler} />
+            <input
+                type="text"
+                onChange={websiteChangeHandler}
+                value={website}
+            />
             <br />
-            <input type="text" onChange={usernameChangeHandler} />
+            <input
+                type="text"
+                onChange={usernameChangeHandler}
+                value={username}
+            />
             <br />
-            <input type="text" onChange={passwordChangeHandler} />
+            <input
+                type="text"
+                onChange={passwordChangeHandler}
+                value={password}
+            />
             <br />
             <button type="submit">Add account</button>
         </form>

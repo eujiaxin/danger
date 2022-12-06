@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import encode from "../utils/encode.mjs";
 import AddAccountForm from "../components/AddAccountForm.js";
+import { useState } from "react";
+
 const AccountDetails = () => {
-    // FIXME: better way to store password? password is null upon any reload
     const { state } = useLocation();
     const { password } = state;
-
-    const detailsList = encode.decrypt_file(password);
+    const [accounts, setAccounts] = useState(encode.decrypt_file(password));
 
     return (
         <>
@@ -14,16 +14,20 @@ const AccountDetails = () => {
             <div>
                 {password}
                 <br />
-                {Array.isArray(detailsList) && detailsList.length > 0
-                    ? detailsList.map((e) => (
+                {Array.isArray(accounts) && accounts.length > 0
+                    ? accounts.map((e) => (
                           <div>
                               {e.website}|{e.username}|{e.password}
                           </div>
                       ))
-                    : detailsList}
+                    : accounts}
             </div>
             <br />
-            <AddAccountForm />
+            <AddAccountForm
+                accounts={accounts}
+                password={password}
+                setAccounts={setAccounts}
+            />
         </>
     );
 };
