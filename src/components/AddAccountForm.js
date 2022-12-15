@@ -1,5 +1,5 @@
 import { useState } from "react";
-import encode from "../utils/encode.mjs";
+import hash from "../utils/hash.mjs";
 
 const AddAccountForm = (props) => {
     const [website, setWebsite] = useState("");
@@ -35,8 +35,8 @@ const AddAccountForm = (props) => {
             password: password,
         };
         const newAccounts = [account, ...props.accounts];
-        encode.sync_file(newAccounts, props.password);
-        props.setAccounts(encode.decrypt_file(props.password));
+        hash.sync_file(newAccounts, props.password);
+        props.setAccounts(hash.decrypt_file(props.password));
 
         setWebsite("");
         setUsername("");

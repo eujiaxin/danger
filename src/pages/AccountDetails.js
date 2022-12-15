@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import encode from "../utils/encode.mjs";
+import hash from "../utils/hash.mjs";
 import AddAccountForm from "../components/AddAccountForm.js";
 import { useState } from "react";
 
 const AccountDetails = () => {
     const { state } = useLocation();
     const { password } = state;
-    const [accounts, setAccounts] = useState(encode.decrypt_file(password));
+    const [accounts, setAccounts] = useState(hash.decrypt_file(password));
 
     return (
         <>
@@ -14,13 +14,11 @@ const AccountDetails = () => {
             <div>
                 {password}
                 <br />
-                {Array.isArray(accounts) && accounts.length > 0
-                    ? accounts.map((e) => (
-                          <div>
-                              {e.website}|{e.username}|{e.password}
-                          </div>
-                      ))
-                    : accounts}
+                {accounts.map((e) => (
+                    <div>
+                        {e.website}|{e.username}|{e.password}
+                    </div>
+                ))}
             </div>
             <br />
             <AddAccountForm

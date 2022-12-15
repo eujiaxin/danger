@@ -92,8 +92,7 @@ const encode_obj = (obj, password) => {
 
 const parse_decode = (decoded) => {
     const res = []
-    const arr = (decoded.match(/\|/g) || []).length % 3 === 0 ? decoded.split("|").slice(0, -1) : rand_split(decoded.replace("|", ""))
-    console.log(arr)
+    const arr = (decoded.match(/\|/g) || []).length % 3 === 0 && (decoded.match(/\|/g) || []).length !== 0 ? decoded.split("|").slice(0, -1) : rand_split(decoded.replace("|", ""))
     for (let i = 0; i < arr.length && i + 2 < arr.length; i += 3) {
         res.push({
             "website": arr[i],
@@ -117,6 +116,7 @@ const decode_cypher = (cypher, password) => {
         }
     }
     decoded += index_to_char[curr_index]
+    console.log(decoded)
     return parse_decode(decoded)
 }
 
