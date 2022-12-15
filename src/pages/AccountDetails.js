@@ -12,7 +12,6 @@ const AccountDetails = () => {
         <>
             <Link to="/">Re-enter password</Link>
             <div>
-                {password}
                 <br />
                 {accounts.map((e) => (
                     <div>

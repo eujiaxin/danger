@@ -111,12 +111,11 @@ const decode_cypher = (cypher, password) => {
         if (cypher[i] !== '\n') {
             curr_index += cypher[i]
         } else {
-            decoded += index_to_char[curr_index]
+            decoded += index_to_char[curr_index] !== undefined ? index_to_char[curr_index] : ""
             curr_index = ""
         }
     }
-    decoded += index_to_char[curr_index]
-    console.log(decoded)
+    decoded += index_to_char[curr_index] !== undefined ? index_to_char[curr_index] : ""
     return parse_decode(decoded)
 }
 
