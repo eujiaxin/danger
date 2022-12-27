@@ -42,22 +42,30 @@ const AddAccountForm = (props) => {
         setUsername("");
         setPassword("");
     };
+
+    const darkStyle = "bg-slate-900 text-white font-mono";
     return (
-        <form onSubmit={formSubmitHandler}>
+        <form
+            onSubmit={formSubmitHandler}
+            className={`${darkStyle} flex space-x-5`}
+        >
             <input
                 type="text"
+                className={darkStyle}
                 onChange={websiteChangeHandler}
                 value={website}
             />
             <br />
             <input
                 type="text"
+                className={darkStyle}
                 onChange={usernameChangeHandler}
                 value={username}
             />
             <br />
             <input
                 type="text"
+                className={darkStyle}
                 onChange={passwordChangeHandler}
                 value={password}
             />

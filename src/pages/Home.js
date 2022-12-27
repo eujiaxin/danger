@@ -22,17 +22,19 @@ const Home = () => {
     };
 
     return (
-        <>
+        <div className="h-screen bg-slate-900">
             <form onSubmit={formSubmitHandler}>
                 <input
                     type="password"
-                    className={`${styles.input} ${styles.centered}`}
+                    className={`${styles.input} ${styles.centered} bg-slate-900 text-white`}
                     onChange={passwordChangeHandler}
                 />
             </form>
 
-            <span className={styles.centered2}>{enteredPassword}</span>
-        </>
+            <span className={`${styles.centered2} text-white font-mono`}>
+                {enteredPassword}
+            </span>
+        </div>
     );
 };
 

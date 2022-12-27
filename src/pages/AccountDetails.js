@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import hash from "../utils/hash.mjs";
 import AddAccountForm from "../components/AddAccountForm.js";
 import { useState } from "react";
+import DetailCard from "../components/DetailCard.js";
 
 const AccountDetails = () => {
     const { state } = useLocation();
@@ -9,23 +10,25 @@ const AccountDetails = () => {
     const [accounts, setAccounts] = useState(hash.decrypt_file(password));
 
     return (
-        <>
-            <Link to="/">Re-enter password</Link>
-            <div>
-                <br />
-                {accounts.map((e) => (
-                    <div>
-                        {e.website}|{e.username}|{e.password}
-                    </div>
-                ))}
-            </div>
-            <br />
+        <div className="h-screen bg-slate-900 text-white font-mono">
             <AddAccountForm
                 accounts={accounts}
                 password={password}
                 setAccounts={setAccounts}
             />
-        </>
+            {/* <Link to="/">Re-enter password</Link> */}
+            <div>
+                <br />
+                {accounts.map((e, i) => (
+                    <DetailCard
+                        website={e.website}
+                        username={e.username}
+                        password={e.password}
+                    />
+                ))}
+            </div>
+            <br />
+        </div>
     );
 };
 
