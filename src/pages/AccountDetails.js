@@ -27,7 +27,6 @@ const AccountDetails = () => {
                 password={password}
                 setAccounts={setAccounts}
             />
-            {/* <Link to="/">Re-enter password</Link> */}
             <div>
                 <br />
                 {accounts.map((e, i) => (
@@ -40,6 +39,11 @@ const AccountDetails = () => {
                 ))}
             </div>
             <br />
+            <footer>
+                <Link className="text-blue-500 underline h-10" to="/">
+                    Re-enter password
+                </Link>
+            </footer>
         </div>
     );
 };
