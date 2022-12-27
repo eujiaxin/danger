@@ -28,7 +28,9 @@ const DetailCard = (prop) => {
                     <button>Edit</button>
                 </li>
                 <li>
-                    <button onClick={deleteHandler}>Delete</button>
+                    <button className="text-rose-700" onClick={deleteHandler}>
+                        Delete
+                    </button>
                 </li>
             </ul>
         </>

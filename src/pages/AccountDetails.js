@@ -12,8 +12,8 @@ const AccountDetails = () => {
     const deleteAccount = (account) => {
         const resAccounts = accounts.filter(
             (e) =>
-                e.website !== account.website &&
-                e.username !== account.username &&
+                e.website !== account.website ||
+                e.username !== account.username ||
                 e.password !== account.password
         );
         hash.sync_file(resAccounts, password);
