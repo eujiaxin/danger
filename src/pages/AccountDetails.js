@@ -9,6 +9,17 @@ const AccountDetails = () => {
     const { password } = state;
     const [accounts, setAccounts] = useState(hash.decrypt_file(password));
 
+    const deleteAccount = (account) => {
+        const resAccounts = accounts.filter(
+            (e) =>
+                e.website !== account.website &&
+                e.username !== account.username &&
+                e.password !== account.password
+        );
+        hash.sync_file(resAccounts, password);
+        setAccounts(hash.decrypt_file(password));
+    };
+
     return (
         <div className="h-screen bg-slate-900 text-white font-mono">
             <AddAccountForm
@@ -24,6 +35,7 @@ const AccountDetails = () => {
                         website={e.website}
                         username={e.username}
                         password={e.password}
+                        deleteAccount={deleteAccount}
                     />
                 ))}
             </div>

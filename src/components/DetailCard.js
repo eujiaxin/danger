@@ -7,6 +7,10 @@ const DetailCard = (prop) => {
         navigator.clipboard.writeText(prop.password);
     };
 
+    const deleteHandler = (e) => {
+        prop.deleteAccount(prop);
+    };
+
     const detailStyle =
         "bg-slate-700 text-slate-700 hover:bg-slate-900 hover:text-white hover:cursor-pointer";
 
@@ -19,6 +23,12 @@ const DetailCard = (prop) => {
                 </li>
                 <li className={detailStyle} onClick={copyPasswordHandler}>
                     {prop.password}
+                </li>
+                <li>
+                    <button>Edit</button>
+                </li>
+                <li>
+                    <button onClick={deleteHandler}>Delete</button>
                 </li>
             </ul>
         </>
