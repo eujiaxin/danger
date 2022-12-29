@@ -1,13 +1,19 @@
 import { Link, useLocation } from "react-router-dom";
 import hash from "../utils/hash.mjs";
 import AddAccountForm from "../components/AddAccountForm.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DetailCard from "../components/DetailCard.js";
+import SearchBar from "../components/SearchBar.js";
 
 const AccountDetails = () => {
     const { state } = useLocation();
     const { password } = state;
     const [accounts, setAccounts] = useState(hash.decrypt_file(password));
+    const [filteredAccounts, setFilteredAccounts] = useState(accounts);
+
+    useEffect(() => {
+        setFilteredAccounts(accounts);
+    }, [accounts]);
 
     const deleteAccount = (account) => {
         const resAccounts = accounts.filter(
@@ -45,9 +51,12 @@ const AccountDetails = () => {
                 password={password}
                 setAccounts={setAccounts}
             />
+            <SearchBar
+                accounts={accounts}
+                setFilteredAccounts={setFilteredAccounts}
+            />
             <div>
-                <br />
-                {accounts.map((e, i) => (
+                {filteredAccounts.map((e, i) => (
                     <DetailCard
                         website={e.website}
                         username={e.username}
@@ -57,7 +66,6 @@ const AccountDetails = () => {
                     />
                 ))}
             </div>
-            <br />
             <footer>
                 <Link className="text-blue-500 underline h-10" to="/">
                     Re-enter password
