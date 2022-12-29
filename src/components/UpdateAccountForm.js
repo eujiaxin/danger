@@ -1,5 +1,4 @@
 import { useState } from "react";
-import hash from "../utils/hash.mjs";
 
 const UpdateAccountForm = (props) => {
     const originalAccount = {
