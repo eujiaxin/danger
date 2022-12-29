@@ -3,7 +3,6 @@ import hash from "../utils/hash.mjs";
 import AddAccountForm from "../components/AddAccountForm.js";
 import { useState } from "react";
 import DetailCard from "../components/DetailCard.js";
-import UpdateAccountForm from "../components/UpdateAccountForm.js";
 
 const AccountDetails = () => {
     const { state } = useLocation();
