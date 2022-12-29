@@ -3,6 +3,7 @@ import hash from "../utils/hash.mjs";
 import AddAccountForm from "../components/AddAccountForm.js";
 import { useState } from "react";
 import DetailCard from "../components/DetailCard.js";
+import UpdateAccountForm from "../components/UpdateAccountForm.js";
 
 const AccountDetails = () => {
     const { state } = useLocation();
@@ -16,9 +17,27 @@ const AccountDetails = () => {
                 e.username !== account.username ||
                 e.password !== account.password
         );
-        hash.sync_file(resAccounts, password);
+        writeFile(resAccounts);
+    };
+
+    const writeFile = (accounts) => {
+        hash.sync_file(accounts, password);
         setAccounts(hash.decrypt_file(password));
     };
+
+    const updateAccount = (account, newAccount) => {
+        console.log(accounts, account, newAccount);
+        const target = accounts.find(
+            (e) => JSON.stringify(e) === JSON.stringify(account)
+        );
+        console.log("target", target);
+        target.website = newAccount.website;
+        target.username = newAccount.username;
+        target.password = newAccount.password;
+        writeFile(accounts);
+    };
+
+    console.log("accounts: ", accounts);
 
     return (
         <div className="h-screen bg-slate-900 text-white font-mono">
@@ -35,6 +54,7 @@ const AccountDetails = () => {
                         username={e.username}
                         password={e.password}
                         deleteAccount={deleteAccount}
+                        updateAccount={updateAccount}
                     />
                 ))}
             </div>

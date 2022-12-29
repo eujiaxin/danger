@@ -1,14 +1,23 @@
-const DetailCard = (prop) => {
+import { useState } from "react";
+import UpdateAccountForm from "./UpdateAccountForm";
+
+const DetailCard = (props) => {
+    const [isEditing, setIsEditing] = useState(false);
+
+    const editHandler = (e) => {
+        setIsEditing(!isEditing);
+    };
+
     const copyUsernameHandler = () => {
-        navigator.clipboard.writeText(prop.username);
+        navigator.clipboard.writeText(props.username);
     };
 
     const copyPasswordHandler = () => {
-        navigator.clipboard.writeText(prop.password);
+        navigator.clipboard.writeText(props.password);
     };
 
     const deleteHandler = (e) => {
-        prop.deleteAccount(prop);
+        props.deleteAccount(props);
     };
 
     const detailStyle =
@@ -16,23 +25,36 @@ const DetailCard = (prop) => {
 
     return (
         <>
-            <ul className="p-3 inline-grid">
-                <li>{prop.website}</li>
-                <li className={detailStyle} onClick={copyUsernameHandler}>
-                    {prop.username}
-                </li>
-                <li className={detailStyle} onClick={copyPasswordHandler}>
-                    {prop.password}
-                </li>
-                <li>
-                    <button>Edit</button>
-                </li>
-                <li>
-                    <button className="text-rose-700" onClick={deleteHandler}>
-                        Delete
-                    </button>
-                </li>
-            </ul>
+            {isEditing ? (
+                <UpdateAccountForm
+                    website={props.website}
+                    username={props.username}
+                    password={props.password}
+                    setIsEditing={setIsEditing}
+                    updateAccount={props.updateAccount}
+                />
+            ) : (
+                <ul className="p-3 inline-grid">
+                    <li>{props.website}</li>
+                    <li className={detailStyle} onClick={copyUsernameHandler}>
+                        {props.username}
+                    </li>
+                    <li className={detailStyle} onClick={copyPasswordHandler}>
+                        {props.password}
+                    </li>
+                    <li>
+                        <button onClick={editHandler}>Edit</button>
+                    </li>
+                    <li>
+                        <button
+                            className="text-rose-700"
+                            onClick={deleteHandler}
+                        >
+                            Delete
+                        </button>
+                    </li>
+                </ul>
+            )}
         </>
     );
 };
