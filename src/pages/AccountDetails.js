@@ -9,11 +9,16 @@ const AccountDetails = () => {
     const { state } = useLocation();
     const { password } = state;
     const [accounts, setAccounts] = useState(hash.decrypt_file(password));
+    const [searchInput, setSearchInput] = useState("");
     const [filteredAccounts, setFilteredAccounts] = useState(accounts);
 
     useEffect(() => {
-        setFilteredAccounts(accounts);
-    }, [accounts]);
+        const res = accounts.filter((e) =>
+            e.website.toLowerCase().includes(searchInput.toLowerCase())
+        );
+
+        setFilteredAccounts(res);
+    }, [accounts, searchInput]);
 
     const deleteAccount = (account) => {
         const resAccounts = accounts.filter(
@@ -31,7 +36,6 @@ const AccountDetails = () => {
     };
 
     const updateAccount = (account, newAccount) => {
-        console.log(accounts, account, newAccount);
         const target = accounts.find(
             (e) => JSON.stringify(e) === JSON.stringify(account)
         );
@@ -42,8 +46,6 @@ const AccountDetails = () => {
         writeFile(accounts);
     };
 
-    console.log("accounts: ", accounts);
-
     return (
         <div className="h-screen bg-slate-900 text-white font-mono">
             <AddAccountForm
@@ -53,6 +55,7 @@ const AccountDetails = () => {
             />
             <SearchBar
                 accounts={accounts}
+                setSearchInput={setSearchInput}
                 setFilteredAccounts={setFilteredAccounts}
             />
             <div>

@@ -1,10 +1,6 @@
 const SearchBar = (props) => {
     const searchHandler = (event) => {
-        const filteredAccounts = props.accounts.filter((e) =>
-            e.website.toLowerCase().includes(event.target.value.toLowerCase())
-        );
-
-        props.setFilteredAccounts(filteredAccounts);
+        props.setSearchInput(event.target.value);
     };
 
     return (
