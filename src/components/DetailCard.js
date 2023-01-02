@@ -5,7 +5,6 @@ import UpdateAccountForm from "./UpdateAccountForm";
 const DetailCard = (props) => {
     const [isEditing, setIsEditing] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showEditModal, setShowEditModal] = useState(false);
 
     const editHandler = (e) => {
         setIsEditing(!isEditing);
@@ -39,7 +38,7 @@ const DetailCard = (props) => {
                     }}
                 />
             )}
-            {showEditModal && <Modal />}
+
             {isEditing ? (
                 <UpdateAccountForm
                     website={props.website}

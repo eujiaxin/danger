@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Modal from "./Modal";
 
 const UpdateAccountForm = (props) => {
     const originalAccount = {
@@ -9,6 +10,7 @@ const UpdateAccountForm = (props) => {
     const [website, setWebsite] = useState(props.website);
     const [username, setUsername] = useState(props.username);
     const [password, setPassword] = useState(props.password);
+    const [showEditModal, setShowEditModal] = useState(false);
 
     const websiteChangeHandler = (e) => {
         setWebsite(e.target.value);
@@ -32,42 +34,56 @@ const UpdateAccountForm = (props) => {
         ) {
             return;
         }
-        // FIXME: update field, not add new
 
         props.updateAccount(originalAccount, { website, username, password });
 
-        // TODO: change field back to detail card
+        setShowEditModal(false);
         props.setIsEditing(false);
     };
 
     const darkStyle = "bg-slate-900 text-white font-mono";
     return (
-        <form
-            onSubmit={formSubmitHandler}
-            className={`${darkStyle} inline-grid`}
-        >
-            <input
-                type="text"
-                className={darkStyle}
-                onChange={websiteChangeHandler}
-                value={website}
-            />
-            <input
-                type="text"
-                className={darkStyle}
-                onChange={usernameChangeHandler}
-                value={username}
-            />
-            <input
-                type="text"
-                className={darkStyle}
-                onChange={passwordChangeHandler}
-                value={password}
-            />
-            <button type="submit" onClick={formSubmitHandler}>
-                Save Edit
-            </button>
-        </form>
+        <>
+            {showEditModal && (
+                <Modal
+                    title="Edit"
+                    message="Edit this?"
+                    onConfirm={formSubmitHandler}
+                    onDeny={() => {
+                        setShowEditModal(false);
+                    }}
+                />
+            )}
+
+            <form className={`${darkStyle} inline-grid`}>
+                <input
+                    type="text"
+                    className={darkStyle}
+                    onChange={websiteChangeHandler}
+                    value={website}
+                />
+                <input
+                    type="text"
+                    className={darkStyle}
+                    onChange={usernameChangeHandler}
+                    value={username}
+                />
+                <input
+                    type="text"
+                    className={darkStyle}
+                    onChange={passwordChangeHandler}
+                    value={password}
+                />
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        setShowEditModal(true);
+                    }}
+                >
+                    Save Edit
+                </button>
+            </form>
+        </>
     );
 };
 
