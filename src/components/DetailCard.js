@@ -1,8 +1,11 @@
 import { useState } from "react";
+import Modal from "./Modal";
 import UpdateAccountForm from "./UpdateAccountForm";
 
 const DetailCard = (props) => {
     const [isEditing, setIsEditing] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
 
     const editHandler = (e) => {
         setIsEditing(!isEditing);
@@ -18,6 +21,7 @@ const DetailCard = (props) => {
 
     const deleteHandler = (e) => {
         props.deleteAccount(props);
+        setShowDeleteModal(false);
     };
 
     const detailStyle =
@@ -25,6 +29,17 @@ const DetailCard = (props) => {
 
     return (
         <>
+            {showDeleteModal && (
+                <Modal
+                    title="Delete?"
+                    message="Delete this?"
+                    onConfirm={deleteHandler}
+                    onDeny={() => {
+                        setShowDeleteModal(false);
+                    }}
+                />
+            )}
+            {showEditModal && <Modal />}
             {isEditing ? (
                 <UpdateAccountForm
                     website={props.website}
@@ -48,7 +63,7 @@ const DetailCard = (props) => {
                     <li>
                         <button
                             className="text-rose-700"
-                            onClick={deleteHandler}
+                            onClick={() => setShowDeleteModal(true)}
                         >
                             Delete
                         </button>
