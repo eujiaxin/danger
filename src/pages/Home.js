@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Home.module.css";
 
 const Home = () => {
     const [enteredPassword, setEnteredPassword] = useState("");
@@ -22,18 +21,15 @@ const Home = () => {
     };
 
     return (
-        <div className="h-screen bg-slate-900">
+        <div className="h-screen bg-slate-900 grid place-content-center text-white font-mono">
             <form onSubmit={formSubmitHandler}>
                 <input
                     type="password"
-                    className={`${styles.input} ${styles.centered} bg-slate-900 text-white`}
+                    className="bg-slate-900 "
                     onChange={passwordChangeHandler}
                 />
             </form>
-
-            <span className={`${styles.centered2} text-white font-mono`}>
-                {enteredPassword}
-            </span>
+            {/* {enteredPassword} */}
         </div>
     );
 };
