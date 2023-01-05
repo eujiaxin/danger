@@ -11,6 +11,7 @@ const AccountDetails = () => {
     const [accounts, setAccounts] = useState(hash.decrypt_file(password));
     const [searchInput, setSearchInput] = useState("");
     const [filteredAccounts, setFilteredAccounts] = useState(accounts);
+    const [hideDetails, setHideDetails] = useState(true);
 
     useEffect(() => {
         const res = accounts.filter((e) =>
@@ -39,7 +40,6 @@ const AccountDetails = () => {
         const target = accounts.find(
             (e) => JSON.stringify(e) === JSON.stringify(account)
         );
-        console.log("target", target);
         target.website = newAccount.website;
         target.username = newAccount.username;
         target.password = newAccount.password;
@@ -47,7 +47,7 @@ const AccountDetails = () => {
     };
 
     return (
-        <div className="h-screen bg-slate-900 text-white font-mono">
+        <div className="min-h-screen bg-slate-900 text-white font-mono flex-auto">
             <AddAccountForm
                 accounts={accounts}
                 password={password}
@@ -66,10 +66,17 @@ const AccountDetails = () => {
                         password={e.password}
                         deleteAccount={deleteAccount}
                         updateAccount={updateAccount}
+                        hideDetails={hideDetails}
                     />
                 ))}
             </div>
             <footer>
+                <div
+                    className="text-blue-500 underline hover:cursor-pointer"
+                    onClick={() => setHideDetails(!hideDetails)}
+                >
+                    {hideDetails ? "Show" : "Hide"} details
+                </div>
                 <Link className="text-blue-500 underline h-10" to="/">
                     Re-enter password
                 </Link>

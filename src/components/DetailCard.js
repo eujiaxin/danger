@@ -50,10 +50,24 @@ const DetailCard = (props) => {
             ) : (
                 <ul className="p-3 inline-grid">
                     <li>{props.website}</li>
-                    <li className={detailStyle} onClick={copyUsernameHandler}>
+                    <li
+                        className={
+                            props.hideDetails
+                                ? detailStyle
+                                : "hover:bg-slate-800 hover:cursor-pointer"
+                        }
+                        onClick={copyUsernameHandler}
+                    >
                         {props.username}
                     </li>
-                    <li className={detailStyle} onClick={copyPasswordHandler}>
+                    <li
+                        className={
+                            props.hideDetails
+                                ? detailStyle
+                                : "hover:bg-slate-800 hover:cursor-pointer"
+                        }
+                        onClick={copyPasswordHandler}
+                    >
                         {props.password}
                     </li>
                     <li>
