@@ -25,7 +25,7 @@ const Home = () => {
             <form onSubmit={formSubmitHandler}>
                 <input
                     type="password"
-                    className="bg-slate-900 "
+                    className="bg-slate-900 border-b focus:outline-0"
                     onChange={passwordChangeHandler}
                 />
             </form>
