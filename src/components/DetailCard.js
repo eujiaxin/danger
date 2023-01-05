@@ -30,8 +30,8 @@ const DetailCard = (props) => {
         <>
             {showDeleteModal && (
                 <Modal
-                    title="Delete?"
-                    message="Delete this?"
+                    title="Delete Account Credential"
+                    message={`${"Delete the selected account?"}`}
                     onConfirm={deleteHandler}
                     onDeny={() => {
                         setShowDeleteModal(false);

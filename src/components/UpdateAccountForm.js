@@ -46,8 +46,8 @@ const UpdateAccountForm = (props) => {
         <>
             {showEditModal && (
                 <Modal
-                    title="Edit"
-                    message="Edit this?"
+                    title="Edit Account Credential"
+                    message="Update the selected account?"
                     onConfirm={formSubmitHandler}
                     onDeny={() => {
                         setShowEditModal(false);
