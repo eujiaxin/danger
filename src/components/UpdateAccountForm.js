@@ -51,6 +51,7 @@ const UpdateAccountForm = (props) => {
                     onConfirm={formSubmitHandler}
                     onDeny={() => {
                         setShowEditModal(false);
+                        props.setIsEditing(false);
                     }}
                 />
             )}
