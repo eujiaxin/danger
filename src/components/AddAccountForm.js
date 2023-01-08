@@ -44,33 +44,40 @@ const AddAccountForm = (props) => {
     };
 
     const darkStyle = "bg-slate-900 text-white font-mono";
+    const inputStyle = "border-b focus:outline-0";
+
     return (
         <form
             onSubmit={formSubmitHandler}
-            className={`${darkStyle} flex space-x-5`}
+            className={`${darkStyle} flex space-x-5 p-5`}
         >
             <input
                 type="text"
-                className={darkStyle}
+                className={`${inputStyle} ${darkStyle}`}
                 onChange={websiteChangeHandler}
                 value={website}
             />
             <br />
             <input
                 type="text"
-                className={darkStyle}
+                className={`${inputStyle} ${darkStyle}`}
                 onChange={usernameChangeHandler}
                 value={username}
             />
             <br />
             <input
                 type="text"
-                className={darkStyle}
+                className={`${inputStyle} ${darkStyle}`}
                 onChange={passwordChangeHandler}
                 value={password}
             />
             <br />
-            <button type="submit">Add account</button>
+            <button
+                type="submit"
+                className="border rounded-full h-10 w-10 hover:bg-slate-800"
+            >
+                +
+            </button>
         </form>
     );
 };

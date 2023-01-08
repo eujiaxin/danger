@@ -1,14 +1,26 @@
-const DetailCard = (prop) => {
+import { useState } from "react";
+import Modal from "./Modal";
+import UpdateAccountForm from "./UpdateAccountForm";
+
+const DetailCard = (props) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+    const editHandler = (e) => {
+        setIsEditing(!isEditing);
+    };
+
     const copyUsernameHandler = () => {
-        navigator.clipboard.writeText(prop.username);
+        navigator.clipboard.writeText(props.username);
     };
 
     const copyPasswordHandler = () => {
-        navigator.clipboard.writeText(prop.password);
+        navigator.clipboard.writeText(props.password);
     };
 
     const deleteHandler = (e) => {
-        prop.deleteAccount(prop);
+        props.deleteAccount(props);
+        setShowDeleteModal(false);
     };
 
     const detailStyle =
@@ -16,23 +28,61 @@ const DetailCard = (prop) => {
 
     return (
         <>
-            <ul className="p-3 inline-grid">
-                <li>{prop.website}</li>
-                <li className={detailStyle} onClick={copyUsernameHandler}>
-                    {prop.username}
-                </li>
-                <li className={detailStyle} onClick={copyPasswordHandler}>
-                    {prop.password}
-                </li>
-                <li>
-                    <button>Edit</button>
-                </li>
-                <li>
-                    <button className="text-rose-700" onClick={deleteHandler}>
-                        Delete
-                    </button>
-                </li>
-            </ul>
+            {showDeleteModal && (
+                <Modal
+                    title="Delete Account Credential"
+                    message={`${"Delete the selected account?"}`}
+                    onConfirm={deleteHandler}
+                    onDeny={() => {
+                        setShowDeleteModal(false);
+                    }}
+                />
+            )}
+
+            {isEditing ? (
+                <UpdateAccountForm
+                    website={props.website}
+                    username={props.username}
+                    password={props.password}
+                    setIsEditing={setIsEditing}
+                    updateAccount={props.updateAccount}
+                />
+            ) : (
+                <ul className="p-3 inline-grid">
+                    <li>{props.website}</li>
+                    <li
+                        className={
+                            props.hideDetails
+                                ? detailStyle
+                                : "hover:bg-slate-800 hover:cursor-pointer"
+                        }
+                        onClick={copyUsernameHandler}
+                    >
+                        {props.username}
+                    </li>
+                    <li
+                        className={
+                            props.hideDetails
+                                ? detailStyle
+                                : "hover:bg-slate-800 hover:cursor-pointer"
+                        }
+                        onClick={copyPasswordHandler}
+                    >
+                        {props.password}
+                    </li>
+                    <li>
+                        <button onClick={editHandler}>Edit</button>
+                    </li>
+                    <li>
+                        <button
+                            className="text-rose-700"
+                            onClick={() => setShowDeleteModal(true)}
+                        >
+                            Delete
+                        </button>
+                    </li>
+                </ul>
+            )}
         </>
     );
 };
