@@ -29,7 +29,7 @@ const rand_split = (s) => {
 }
 
 const rng = new RNG(69)
-const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=!@#$%^&*()_+[]{}:':\",.<>|"
+const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=!@#$%^&*()_+[]{}:':\",.<>| "
 const hex_d = {
     "a": "10",
     "b": "11",
