@@ -46,29 +46,29 @@ const AddAccountForm = (props) => {
         <div className="container mx-auto p-5 flex justify-center">
             <form
                 onSubmit={formSubmitHandler}
-                className={`${darkStyle} border-2 border-slate-800 md:w-3/4 w-11/12`}
+                className={`${darkStyle} md:w-3/4 w-11/12 flex gap-4 flex-wrap justify-around`}
             >
                 <input
                     type="text"
-                    className={`${inputStyle} ${darkStyle}`}
+                    className={`${inputStyle} ${darkStyle} shrink`}
                     onChange={websiteChangeHandler}
                     value={website}
                 />
                 <input
                     type="text"
-                    className={`${inputStyle} ${darkStyle}`}
+                    className={`${inputStyle} ${darkStyle} shrink`}
                     onChange={usernameChangeHandler}
                     value={username}
                 />
                 <input
                     type="text"
-                    className={`${inputStyle} ${darkStyle}`}
+                    className={`${inputStyle} ${darkStyle} shrink`}
                     onChange={passwordChangeHandler}
                     value={password}
                 />
                 <button
                     type="submit"
-                    className="border rounded-full h-10 w-10 hover:bg-slate-800 shrink"
+                    className="border rounded-full h-10 w-10 hover:bg-slate-800 flex-none"
                 >
                     +
                 </button>

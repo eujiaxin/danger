@@ -49,11 +49,11 @@ const DetailCard = (props) => {
                 />
             ) : (
                 <div className="p-3 grid md:grid-cols-12 grid-cols-1 gap-2 place-self-stretch">
-                    <div className="col-span-3 break-words">
+                    <div className="col-span-3 md:break-words">
                         {props.website}
                     </div>
                     <div
-                        className={`col-span-3 break-words ${
+                        className={`md:col-span-3 md:break-words ${
                             props.hideDetails
                                 ? detailStyle
                                 : "hover:bg-slate-800 hover:cursor-pointer"
@@ -63,7 +63,7 @@ const DetailCard = (props) => {
                         {props.username}
                     </div>
                     <div
-                        className={`col-span-3 break-words ${
+                        className={`md:col-span-3 break-words ${
                             props.hideDetails
                                 ? detailStyle
                                 : "hover:bg-slate-800 hover:cursor-pointer"
