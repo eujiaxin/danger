@@ -47,7 +47,7 @@ const AccountDetails = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-900 text-white font-mono flex-auto">
+        <div className="h-screen bg-slate-900 text-white font-mono">
             <AddAccountForm
                 accounts={accounts}
                 password={password}
@@ -58,17 +58,19 @@ const AccountDetails = () => {
                 setSearchInput={setSearchInput}
                 setFilteredAccounts={setFilteredAccounts}
             />
-            <div>
-                {filteredAccounts.map((e, i) => (
-                    <DetailCard
-                        website={e.website}
-                        username={e.username}
-                        password={e.password}
-                        deleteAccount={deleteAccount}
-                        updateAccount={updateAccount}
-                        hideDetails={hideDetails}
-                    />
-                ))}
+            <div className="container mx-auto p-5 flex justify-center">
+                <div className="border-2 border-slate-800 md:w-3/4 w-11/12 flex flex-wrap">
+                    {filteredAccounts.map((e, i) => (
+                        <DetailCard
+                            website={e.website}
+                            username={e.username}
+                            password={e.password}
+                            deleteAccount={deleteAccount}
+                            updateAccount={updateAccount}
+                            hideDetails={hideDetails}
+                        />
+                    ))}
+                </div>
             </div>
             <footer>
                 <div

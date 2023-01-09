@@ -37,48 +37,43 @@ const AddAccountForm = (props) => {
         const newAccounts = [account, ...props.accounts];
         hash.sync_file(newAccounts, props.password);
         props.setAccounts(hash.decrypt_file(props.password));
-
-        setWebsite("");
-        setUsername("");
-        setPassword("");
     };
 
     const darkStyle = "bg-slate-900 text-white font-mono";
     const inputStyle = "border-b focus:outline-0";
 
     return (
-        <form
-            onSubmit={formSubmitHandler}
-            className={`${darkStyle} flex space-x-5 p-5`}
-        >
-            <input
-                type="text"
-                className={`${inputStyle} ${darkStyle}`}
-                onChange={websiteChangeHandler}
-                value={website}
-            />
-            <br />
-            <input
-                type="text"
-                className={`${inputStyle} ${darkStyle}`}
-                onChange={usernameChangeHandler}
-                value={username}
-            />
-            <br />
-            <input
-                type="text"
-                className={`${inputStyle} ${darkStyle}`}
-                onChange={passwordChangeHandler}
-                value={password}
-            />
-            <br />
-            <button
-                type="submit"
-                className="border rounded-full h-10 w-10 hover:bg-slate-800"
+        <div className="container mx-auto p-5 flex justify-center">
+            <form
+                onSubmit={formSubmitHandler}
+                className={`${darkStyle} border-2 border-slate-800 md:w-3/4 w-11/12`}
             >
-                +
-            </button>
-        </form>
+                <input
+                    type="text"
+                    className={`${inputStyle} ${darkStyle}`}
+                    onChange={websiteChangeHandler}
+                    value={website}
+                />
+                <input
+                    type="text"
+                    className={`${inputStyle} ${darkStyle}`}
+                    onChange={usernameChangeHandler}
+                    value={username}
+                />
+                <input
+                    type="text"
+                    className={`${inputStyle} ${darkStyle}`}
+                    onChange={passwordChangeHandler}
+                    value={password}
+                />
+                <button
+                    type="submit"
+                    className="border rounded-full h-10 w-10 hover:bg-slate-800 shrink"
+                >
+                    +
+                </button>
+            </form>
+        </div>
     );
 };
 

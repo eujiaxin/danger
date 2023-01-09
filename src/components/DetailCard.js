@@ -27,7 +27,7 @@ const DetailCard = (props) => {
         "bg-slate-700 text-slate-700 hover:bg-slate-900 hover:text-white hover:cursor-pointer";
 
     return (
-        <>
+        <div className="grow">
             {showDeleteModal && (
                 <Modal
                     title="Delete Account Credential"
@@ -48,42 +48,44 @@ const DetailCard = (props) => {
                     updateAccount={props.updateAccount}
                 />
             ) : (
-                <ul className="p-3 inline-grid">
-                    <li>{props.website}</li>
-                    <li
-                        className={
+                <div className="p-3 grid md:grid-cols-12 grid-cols-1 gap-2 place-self-stretch">
+                    <div className="col-span-3 break-words">
+                        {props.website}
+                    </div>
+                    <div
+                        className={`col-span-3 break-words ${
                             props.hideDetails
                                 ? detailStyle
                                 : "hover:bg-slate-800 hover:cursor-pointer"
-                        }
+                        }`}
                         onClick={copyUsernameHandler}
                     >
                         {props.username}
-                    </li>
-                    <li
-                        className={
+                    </div>
+                    <div
+                        className={`col-span-3 break-words ${
                             props.hideDetails
                                 ? detailStyle
                                 : "hover:bg-slate-800 hover:cursor-pointer"
-                        }
+                        }`}
                         onClick={copyPasswordHandler}
                     >
                         {props.password}
-                    </li>
-                    <li>
+                    </div>
+                    <div className="col-end-12">
                         <button onClick={editHandler}>Edit</button>
-                    </li>
-                    <li>
+                    </div>
+                    <div className="col-end-13">
                         <button
                             className="text-rose-700"
                             onClick={() => setShowDeleteModal(true)}
                         >
                             Delete
                         </button>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             )}
-        </>
+        </div>
     );
 };
 
