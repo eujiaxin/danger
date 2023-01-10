@@ -78,7 +78,7 @@ const UpdateAccountForm = (props) => {
                     value={password}
                 />
                 <button
-                    className="col-end-13 text-slate-400"
+                    className="col-end-12 text-start text-slate-400"
                     onClick={(e) => {
                         e.preventDefault();
                         setShowEditModal(true);
