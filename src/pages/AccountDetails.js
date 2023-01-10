@@ -4,7 +4,6 @@ import AddAccountForm from "../components/AddAccountForm.js";
 import { useEffect, useState } from "react";
 import DetailCard from "../components/DetailCard.js";
 import SearchBar from "../components/SearchBar.js";
-import Toast from "../components/Toast.js";
 
 const AccountDetails = () => {
     const { state } = useLocation();
