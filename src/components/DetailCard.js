@@ -27,7 +27,7 @@ const DetailCard = (props) => {
         "bg-slate-700 text-slate-700 hover:bg-slate-900 hover:text-white hover:cursor-pointer";
 
     return (
-        <div className="grow">
+        <>
             {showDeleteModal && (
                 <Modal
                     title="Delete Account Credential"
@@ -88,7 +88,7 @@ const DetailCard = (props) => {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 };
 

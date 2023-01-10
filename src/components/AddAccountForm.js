@@ -49,7 +49,7 @@ const AddAccountForm = (props) => {
         <div className="container mx-auto p-5 flex justify-center">
             <form
                 onSubmit={formSubmitHandler}
-                className="w-3/4 flex flex-wrap justify-between gap-2"
+                className="w-11/12 flex flex-wrap justify-end gap-2 gap-x-6"
             >
                 <input
                     type="text"

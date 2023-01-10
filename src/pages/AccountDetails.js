@@ -47,7 +47,7 @@ const AccountDetails = () => {
     };
 
     return (
-        <div className="text-slate-200">
+        <div className="h-screen text-slate-300">
             <AddAccountForm
                 accounts={accounts}
                 password={password}
@@ -58,11 +58,11 @@ const AccountDetails = () => {
                 setSearchInput={setSearchInput}
                 setFilteredAccounts={setFilteredAccounts}
             />
-            <div className="h-screen container mx-auto p-5 flex justify-center">
-                <div className="border-2 border-slate-800 md:w-3/4 w-11/12 flex flex-wrap content-start scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 h-3/4 overflow-y-scroll pr-5">
+            <div className="container mx-auto flex justify-center px-5">
+                <div className="border-2 border-slate-800 w-11/12 flex flex-col h-128 content-start scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 overflow-y-scroll pr-5">
                     {filteredAccounts.length === 0 && (
-                        <div className="text-slate-500 place-self-center">
-                            "┏༼ ◉ ╭╮ ◉༽┓"
+                        <div className="text-slate-500 w-full text-center mt-5">
+                            "┏༼ ◉ ╭╮ ◉༽┓" {`What's that?!`}
                         </div>
                     )}
                     {filteredAccounts.map((e, i) => (
@@ -77,17 +77,19 @@ const AccountDetails = () => {
                     ))}
                 </div>
             </div>
-            <footer>
-                <div
-                    className="text-blue-500 underline hover:cursor-pointer"
-                    onClick={() => setHideDetails(!hideDetails)}
-                >
-                    {hideDetails ? "Show" : "Hide"} details
+            <div className="container mx-auto flex justify-center px-5">
+                <div className="w-11/12 flex flex-col jusitfy-center">
+                    <div
+                        className="text-blue-500 underline hover:cursor-pointer"
+                        onClick={() => setHideDetails(!hideDetails)}
+                    >
+                        {hideDetails ? "Show" : "Hide"} details
+                    </div>
+                    <Link className="text-blue-500 underline h-10" to="/">
+                        Re-enter password
+                    </Link>
                 </div>
-                <Link className="text-blue-500 underline h-10" to="/">
-                    Re-enter password
-                </Link>
-            </footer>
+            </div>
         </div>
     );
 };
