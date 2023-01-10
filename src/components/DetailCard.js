@@ -1,10 +1,15 @@
 import { useState } from "react";
 import Modal from "./Modal";
+import Toast from "./Toast";
 import UpdateAccountForm from "./UpdateAccountForm";
 
 const DetailCard = (props) => {
     const [isEditing, setIsEditing] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [copiedText, setCopiedText] = useState("");
+    const [showToast, setShowToast] = useState(false);
+
+    // TODO: add debouncer for copied text toast?
 
     const editHandler = (e) => {
         setIsEditing(!isEditing);
@@ -12,10 +17,20 @@ const DetailCard = (props) => {
 
     const copyUsernameHandler = () => {
         navigator.clipboard.writeText(props.username);
+        setCopiedText(props.username);
+        setShowToast(true);
+        setTimeout(() => {
+            setShowToast(false);
+        }, 4000);
     };
 
     const copyPasswordHandler = () => {
         navigator.clipboard.writeText(props.password);
+        setCopiedText(props.password);
+        setShowToast(true);
+        setTimeout(() => {
+            setShowToast(false);
+        }, 4000);
     };
 
     const deleteHandler = (e) => {
@@ -88,6 +103,8 @@ const DetailCard = (props) => {
                     </div>
                 </div>
             )}
+
+            {showToast && <Toast text={copiedText} />}
         </>
     );
 };

@@ -4,6 +4,7 @@ import AddAccountForm from "../components/AddAccountForm.js";
 import { useEffect, useState } from "react";
 import DetailCard from "../components/DetailCard.js";
 import SearchBar from "../components/SearchBar.js";
+import Toast from "../components/Toast.js";
 
 const AccountDetails = () => {
     const { state } = useLocation();
@@ -78,16 +79,20 @@ const AccountDetails = () => {
                 </div>
             </div>
             <div className="container mx-auto flex justify-center px-5">
-                <div className="w-11/12 flex flex-col jusitfy-center">
-                    <div
-                        className="text-blue-500 underline hover:cursor-pointer"
-                        onClick={() => setHideDetails(!hideDetails)}
-                    >
-                        {hideDetails ? "Show" : "Hide"} details
+                <div className="w-11/12 flex flex-col">
+                    <div>
+                        <span
+                            className="text-blue-500 underline hover:cursor-pointer"
+                            onClick={() => setHideDetails(!hideDetails)}
+                        >
+                            {hideDetails ? "Show" : "Hide"} details
+                        </span>
                     </div>
-                    <Link className="text-blue-500 underline h-10" to="/">
-                        Re-enter password
-                    </Link>
+                    <div>
+                        <Link className="text-blue-500 underline h-10" to="/">
+                            Re-enter password
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
