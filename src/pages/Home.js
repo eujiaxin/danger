@@ -21,11 +21,11 @@ const Home = () => {
     };
 
     return (
-        <div className="h-screen bg-slate-900 grid place-content-center text-white font-mono">
+        <div className="h-screen grid place-content-center">
             <form onSubmit={formSubmitHandler}>
                 <input
                     type="password"
-                    className="bg-slate-900 border-b focus:outline-0"
+                    className="bg-slate-900 text-white border-b focus:outline-0"
                     onChange={passwordChangeHandler}
                 />
             </form>

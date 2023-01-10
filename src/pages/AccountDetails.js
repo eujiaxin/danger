@@ -47,7 +47,7 @@ const AccountDetails = () => {
     };
 
     return (
-        <div className="h-screen bg-slate-900 text-white font-mono">
+        <div className="text-slate-200">
             <AddAccountForm
                 accounts={accounts}
                 password={password}
@@ -58,8 +58,13 @@ const AccountDetails = () => {
                 setSearchInput={setSearchInput}
                 setFilteredAccounts={setFilteredAccounts}
             />
-            <div className="container mx-auto p-5 flex justify-center">
-                <div className="border-2 border-slate-800 md:w-3/4 w-11/12 flex flex-wrap">
+            <div className="h-screen container mx-auto p-5 flex justify-center">
+                <div className="border-2 border-slate-800 md:w-3/4 w-11/12 flex flex-wrap content-start scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 h-3/4 overflow-y-scroll pr-5">
+                    {filteredAccounts.length === 0 && (
+                        <div className="text-slate-500 place-self-center">
+                            "┏༼ ◉ ╭╮ ◉༽┓"
+                        </div>
+                    )}
                     {filteredAccounts.map((e, i) => (
                         <DetailCard
                             website={e.website}

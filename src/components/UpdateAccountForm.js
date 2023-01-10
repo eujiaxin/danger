@@ -56,32 +56,33 @@ const UpdateAccountForm = (props) => {
                 />
             )}
 
-            <form className={`${darkStyle} inline-grid`}>
+            <form className="p-3 grid md:grid-cols-12 grid-cols-1 gap-2 place-self-stretch">
                 <input
                     type="text"
-                    className={darkStyle}
+                    className="md:col-span-3 md:break-words bg-slate-900 border-b border-slate-400 focus:outline-0"
                     onChange={websiteChangeHandler}
                     value={website}
                 />
                 <input
                     type="text"
-                    className={darkStyle}
+                    className="md:col-span-3 md:break-words bg-slate-900 border-b border-slate-400 focus:outline-0"
                     onChange={usernameChangeHandler}
                     value={username}
                 />
                 <input
                     type="text"
-                    className={darkStyle}
+                    className="md:col-span-3 md:break-words bg-slate-900 border-b border-slate-400 focus:outline-0"
                     onChange={passwordChangeHandler}
                     value={password}
                 />
                 <button
+                    className="col-end-13 text-slate-400"
                     onClick={(e) => {
                         e.preventDefault();
                         setShowEditModal(true);
                     }}
                 >
-                    Save Edit
+                    Save
                 </button>
             </form>
         </>

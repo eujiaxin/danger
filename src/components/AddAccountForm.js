@@ -39,39 +39,40 @@ const AddAccountForm = (props) => {
         props.setAccounts(hash.decrypt_file(props.password));
     };
 
-    const darkStyle = "bg-slate-900 text-white font-mono";
-    const inputStyle = "border-b focus:outline-0";
+    const inputStyle = "bg-slate-900 border-b border-slate-400 focus:outline-0";
 
     return (
         <div className="container mx-auto p-5 flex justify-center">
             <form
                 onSubmit={formSubmitHandler}
-                className={`${darkStyle} md:w-3/4 w-11/12 flex gap-4 flex-wrap justify-around`}
+                className="w-3/4 flex flex-wrap justify-between gap-2"
             >
                 <input
                     type="text"
-                    className={`${inputStyle} ${darkStyle} shrink`}
+                    className={`${inputStyle} w-36 lg:w-auto`}
                     onChange={websiteChangeHandler}
                     value={website}
                 />
                 <input
                     type="text"
-                    className={`${inputStyle} ${darkStyle} shrink`}
+                    className={`${inputStyle} w-36 lg:w-auto`}
                     onChange={usernameChangeHandler}
                     value={username}
                 />
                 <input
                     type="text"
-                    className={`${inputStyle} ${darkStyle} shrink`}
+                    className={`${inputStyle} w-36 lg:w-auto`}
                     onChange={passwordChangeHandler}
                     value={password}
                 />
-                <button
-                    type="submit"
-                    className="border rounded-full h-10 w-10 hover:bg-slate-800 flex-none"
-                >
-                    +
-                </button>
+                <div className="pt-3">
+                    <button
+                        type="submit"
+                        className="border border-slate-300 rounded-full h-9 w-9 hover:bg-slate-800"
+                    >
+                        +
+                    </button>
+                </div>
             </form>
         </div>
     );
