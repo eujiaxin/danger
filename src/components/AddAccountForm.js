@@ -37,6 +37,10 @@ const AddAccountForm = (props) => {
         const newAccounts = [account, ...props.accounts];
         hash.sync_file(newAccounts, props.password);
         props.setAccounts(hash.decrypt_file(props.password));
+
+        setWebsite("");
+        setUsername("");
+        setPassword("");
     };
 
     const inputStyle = "bg-slate-900 border-b border-slate-400 focus:outline-0";

@@ -41,13 +41,15 @@ const UpdateAccountForm = (props) => {
         props.setIsEditing(false);
     };
 
-    const darkStyle = "bg-slate-900 text-white font-mono";
     return (
         <>
             {showEditModal && (
                 <Modal
                     title="Edit Account Credential"
-                    message="Update the selected account?"
+                    message="Update the selected account as below?"
+                    website={website}
+                    username={username}
+                    password={password}
                     onConfirm={formSubmitHandler}
                     onDeny={() => {
                         setShowEditModal(false);

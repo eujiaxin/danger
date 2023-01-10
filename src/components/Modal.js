@@ -21,6 +21,11 @@ const ModalOverlay = (props) => {
                         </header>
                         <div className="relative p-6 flex-auto">
                             {props.message}
+                            <ul className="list-inside list-disc p-3">
+                                <li>Website: {props.website}</li>
+                                <li>Username: {props.username}</li>
+                                <li>Password: {props.password}</li>
+                            </ul>
                         </div>
 
                         <footer className="flex items-center justify-end p-6">
@@ -38,14 +43,6 @@ const ModalOverlay = (props) => {
                 </div>
             </div>
         </>
-        // <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none text-white font-mono">
-        //     <header>{props.title}</header>
-        //     <div className="">{props.message}</div>
-        //     <footer className="">
-        //         <button onClick={props.onDeny}>Cancel</button>
-        //         <button onClick={props.onConfirm}>Confirm</button>
-        //     </footer>
-        // </div>
     );
 };
 const Modal = (props) => {
@@ -59,6 +56,9 @@ const Modal = (props) => {
                 <ModalOverlay
                     title={props.title}
                     message={props.message}
+                    website={props.website}
+                    username={props.username}
+                    password={props.password}
                     onConfirm={props.onConfirm}
                     onDeny={props.onDeny}
                 />,
