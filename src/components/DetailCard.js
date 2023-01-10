@@ -67,7 +67,7 @@ const DetailCard = (props) => {
                 />
             ) : (
                 <div className="p-3 grid md:grid-cols-12 grid-cols-1 gap-2 place-self-stretch">
-                    <div className="col-span-3 md:break-words">
+                    <div className="col-span-3 md:break-words md:col-span-2">
                         {props.website}
                     </div>
                     <div
@@ -90,10 +90,10 @@ const DetailCard = (props) => {
                     >
                         {props.password}
                     </div>
-                    <div className="col-end-12">
+                    <div className="lg:col-end-12 col-end-11">
                         <button onClick={editHandler}>Edit</button>
                     </div>
-                    <div className="col-end-13">
+                    <div className="lg:col-end-13 col-end-12">
                         <button
                             className="text-rose-700"
                             onClick={() => setShowDeleteModal(true)}

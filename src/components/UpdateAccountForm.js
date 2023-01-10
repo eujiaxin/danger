@@ -61,7 +61,7 @@ const UpdateAccountForm = (props) => {
             <form className="p-3 grid md:grid-cols-12 grid-cols-1 gap-2 place-self-stretch">
                 <input
                     type="text"
-                    className="md:col-span-3 md:break-words bg-slate-900 border-b border-slate-400 focus:outline-0"
+                    className="col-span-3 md:col-span-2 md:break-words bg-slate-900 border-b border-slate-400 focus:outline-0"
                     onChange={websiteChangeHandler}
                     value={website}
                 />

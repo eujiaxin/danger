@@ -47,7 +47,7 @@ const AccountDetails = () => {
     };
 
     return (
-        <div className="h-screen text-slate-300">
+        <div className="h-screen text-slate-200">
             <AddAccountForm
                 accounts={accounts}
                 password={password}
@@ -58,8 +58,13 @@ const AccountDetails = () => {
                 setSearchInput={setSearchInput}
                 setFilteredAccounts={setFilteredAccounts}
             />
-            <div className="container mx-auto flex justify-center px-5">
-                <div className="border-2 border-slate-800 w-11/12 flex flex-col h-128 content-start scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 overflow-y-scroll pr-5">
+            <div className="container mx-auto flex flex-col justify-center items-center px-5">
+                <div className="p-3 pr-0 lg:w-3/4 w-full grid md:grid-cols-12 grid-cols-1 gap-2 border-b border-slate-800 font-bold text-slate-400">
+                    <div className="ol-span-3 md:col-span-2">Website</div>
+                    <div className="col-span-3">Username</div>
+                    <div className="col-span-3">Password</div>
+                </div>
+                <div className="border-2 border-slate-800 lg:w-3/4 w-full flex flex-col h-128 content-start scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 overflow-y-scroll">
                     {filteredAccounts.length === 0 && (
                         <div className="text-slate-500 w-full text-center mt-5">
                             "┏༼ ◉ ╭╮ ◉༽┓" {`What's that?!`}
@@ -78,7 +83,7 @@ const AccountDetails = () => {
                 </div>
             </div>
             <div className="container mx-auto flex justify-center px-5">
-                <div className="w-11/12 flex flex-col">
+                <div className="lg:w-3/4 w-full flex flex-col">
                     <div>
                         <span
                             className="text-blue-500 underline hover:cursor-pointer"
