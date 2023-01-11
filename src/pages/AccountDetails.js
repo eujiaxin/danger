@@ -7,11 +7,13 @@ import SearchBar from "../components/SearchBar.js";
 
 const AccountDetails = () => {
     const { state } = useLocation();
-    const { password } = state;
+    const { password, file } = state;
     const [accounts, setAccounts] = useState(hash.decrypt_file(password));
     const [searchInput, setSearchInput] = useState("");
     const [filteredAccounts, setFilteredAccounts] = useState(accounts);
     const [hideDetails, setHideDetails] = useState(true);
+
+    // console.log("this is your file: ", file);
 
     useEffect(() => {
         const res = accounts.filter((e) =>
