@@ -7,7 +7,7 @@ const Toast = (props) => {
             {ReactDOM.createPortal(
                 <footer className="fixed bottom-0 text-center flex justify-center w-full ">
                     <span className=" bg-slate-800 text-gray-300 m-4 p-6 rounded">
-                        "{props.text}" has been copied to clipboard.
+                        {props.text}
                     </span>
                 </footer>,
                 document.getElementById("toast-root")

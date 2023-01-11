@@ -17,7 +17,9 @@ const DetailCard = (props) => {
 
     const copyUsernameHandler = () => {
         navigator.clipboard.writeText(props.username);
-        setCopiedText(props.username);
+        setCopiedText(
+            `Username for ${props.website} has been copied to clipboard.`
+        );
         setShowToast(true);
         setTimeout(() => {
             setShowToast(false);
@@ -26,7 +28,9 @@ const DetailCard = (props) => {
 
     const copyPasswordHandler = () => {
         navigator.clipboard.writeText(props.password);
-        setCopiedText(props.password);
+        setCopiedText(
+            `Password for ${props.website} has been copied to clipboard.`
+        );
         setShowToast(true);
         setTimeout(() => {
             setShowToast(false);
