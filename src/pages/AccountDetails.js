@@ -72,16 +72,22 @@ const AccountDetails = () => {
                             "┏༼ ◉ ╭╮ ◉༽┓" {`What's that?!`}
                         </div>
                     )}
-                    {filteredAccounts.map((e, i) => (
-                        <DetailCard
-                            website={e.website}
-                            username={e.username}
-                            password={e.password}
-                            deleteAccount={deleteAccount}
-                            updateAccount={updateAccount}
-                            hideDetails={hideDetails}
-                        />
-                    ))}
+                    {filteredAccounts
+                        .sort((a, b) =>
+                            a.website.toLowerCase() > b.website.toLowerCase()
+                                ? 1
+                                : -1
+                        )
+                        .map((e, i) => (
+                            <DetailCard
+                                website={e.website}
+                                username={e.username}
+                                password={e.password}
+                                deleteAccount={deleteAccount}
+                                updateAccount={updateAccount}
+                                hideDetails={hideDetails}
+                            />
+                        ))}
                 </div>
             </div>
             <div className="container mx-auto flex justify-center px-5">
