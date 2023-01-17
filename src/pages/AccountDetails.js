@@ -60,7 +60,7 @@ const AccountDetails = () => {
                 setSearchInput={setSearchInput}
                 setFilteredAccounts={setFilteredAccounts}
             />
-            <div className="container mx-auto flex flex-col h-3/4 justify-center items-center px-5">
+            <div className="container mx-auto flex flex-col h-3/4 justify-start items-center px-5">
                 <div className="p-3 pr-0 lg:w-3/4 w-full grid md:grid-cols-12 grid-cols-1 gap-2 border-b border-slate-800 font-bold text-slate-400">
                     <div className="ol-span-3 md:col-span-2">Website</div>
                     <div className="col-span-3">Username</div>
@@ -68,8 +68,8 @@ const AccountDetails = () => {
                 </div>
                 <div className="border-2 border-slate-800 lg:w-3/4 w-full flex flex-col content-start scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 overflow-y-scroll">
                     {filteredAccounts.length === 0 && (
-                        <div className="text-slate-500 w-full text-center mt-5">
-                            "┏༼ ◉ ╭╮ ◉༽┓" {`What's that?!`}
+                        <div className="text-slate-400 w-full text-center text-xl my-5">
+                            ヾ(❀◕д◕)ﾉ ..?
                         </div>
                     )}
                     {filteredAccounts
@@ -89,21 +89,24 @@ const AccountDetails = () => {
                             />
                         ))}
                 </div>
-            </div>
-            <div className="container mx-auto flex justify-center px-5">
-                <div className="lg:w-3/4 w-full flex flex-col">
-                    <div>
-                        <span
-                            className="text-blue-500 underline hover:cursor-pointer"
-                            onClick={() => setHideDetails(!hideDetails)}
-                        >
-                            {hideDetails ? "Show" : "Hide"} details
-                        </span>
-                    </div>
-                    <div>
-                        <Link className="text-blue-500 underline h-10" to="/">
-                            Re-enter password
-                        </Link>
+                <div className="container mx-auto flex justify-center py-3">
+                    <div className="lg:w-3/4 w-full flex flex-col">
+                        <div>
+                            <span
+                                className="text-blue-500 underline hover:cursor-pointer"
+                                onClick={() => setHideDetails(!hideDetails)}
+                            >
+                                {hideDetails ? "Show" : "Hide"} details
+                            </span>
+                        </div>
+                        <div>
+                            <Link
+                                className="text-blue-500 underline h-10"
+                                to="/"
+                            >
+                                Re-enter password
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
