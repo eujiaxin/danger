@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "./Modal";
+import SensitiveCredential from "./SensitiveCredential";
 import Toast from "./Toast";
 import UpdateAccountForm from "./UpdateAccountForm";
 
@@ -43,7 +44,7 @@ const DetailCard = (props) => {
     };
 
     const detailStyle =
-        "bg-slate-700 text-slate-700 hover:bg-slate-900 hover:text-white hover:cursor-pointer";
+        "hover:cursor-pointer text-transparent bg-slate-700 select-none";
 
     return (
         <>
@@ -74,26 +75,17 @@ const DetailCard = (props) => {
                     <div className="col-span-3 md:break-words md:col-span-2">
                         {props.website}
                     </div>
-                    <div
-                        className={`md:col-span-3 md:break-words ${
-                            props.hideDetails
-                                ? detailStyle
-                                : "hover:bg-slate-800 hover:cursor-pointer"
-                        }`}
-                        onClick={copyUsernameHandler}
-                    >
-                        {props.username}
-                    </div>
-                    <div
-                        className={`md:col-span-3 break-words ${
-                            props.hideDetails
-                                ? detailStyle
-                                : "hover:bg-slate-800 hover:cursor-pointer"
-                        }`}
-                        onClick={copyPasswordHandler}
-                    >
-                        {props.password}
-                    </div>
+                    <SensitiveCredential
+                        text={props.username}
+                        copyHandler={copyUsernameHandler}
+                        hideDetails={props.hideDetails}
+                    />
+                    <SensitiveCredential
+                        text={props.password}
+                        copyHandler={copyPasswordHandler}
+                        hideDetails={props.hideDetails}
+                    />
+
                     <div className="lg:col-end-12 col-end-11">
                         <button onClick={editHandler}>Edit</button>
                     </div>
