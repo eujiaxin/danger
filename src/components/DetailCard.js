@@ -43,9 +43,6 @@ const DetailCard = (props) => {
         setShowDeleteModal(false);
     };
 
-    const detailStyle =
-        "hover:cursor-pointer text-transparent bg-slate-700 select-none";
-
     return (
         <>
             {showDeleteModal && (

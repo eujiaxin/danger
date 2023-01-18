@@ -35,8 +35,7 @@ const AddAccountForm = (props) => {
             password: password,
         };
         const newAccounts = [account, ...props.accounts];
-        hash.sync_file(newAccounts, props.password);
-        props.setAccounts(hash.decrypt_file(props.password));
+        props.writeFile(newAccounts);
 
         setWebsite("");
         setUsername("");

@@ -2,10 +2,11 @@ import crypto from "crypto";
 
 const fs = window.require("original-fs");
 const path = window.require("path");
-const encryption_file_path = path.join(
+let encryption_file_path = path.join(
     __dirname,
     "../../../../../../src/encryption.txt"
 );
+const DEFAULT_PATH = encryption_file_path;
 
 function RNG(seed) {
     this.m = 0x80000000; // 2**31;
@@ -31,8 +32,9 @@ const rand_split = (s) => {
     return [];
 };
 
-const rng = new RNG(69)
-const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=!@#$%^&*()_+[]{}:':\",.<>| "
+const rng = new RNG(69);
+const alphabet =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=!@#$%^&*()_+[]{}:':\",.<>| ";
 const hex_d = {
     a: "10",
     b: "11",
@@ -96,9 +98,9 @@ const parse_decode = (decoded) => {
     const res = [];
     const arr =
         (decoded.match(/\|/g) || []).length % 3 === 0 &&
-        (decoded.match(/\|/g) || []).length !== 0 ?
-        decoded.split("|").slice(0, -1) :
-        rand_split(decoded.replace("|", ""));
+        (decoded.match(/\|/g) || []).length !== 0
+            ? decoded.split("|").slice(0, -1)
+            : rand_split(decoded.replace("|", ""));
     for (let i = 0; i < arr.length && i + 2 < arr.length; i += 3) {
         res.push({
             website: arr[i],
@@ -118,20 +120,28 @@ const decode_cypher = (cypher, password) => {
             curr_index += cypher[i];
         } else {
             decoded +=
-                index_to_char[curr_index] !== undefined ?
-                index_to_char[curr_index] :
-                "";
+                index_to_char[curr_index] !== undefined
+                    ? index_to_char[curr_index]
+                    : "";
             curr_index = "";
         }
     }
     decoded +=
-        index_to_char[curr_index] !== undefined ?
-        index_to_char[curr_index] :
-        "";
+        index_to_char[curr_index] !== undefined
+            ? index_to_char[curr_index]
+            : "";
     return parse_decode(decoded);
 };
 
-const sync_file = (arr, password) => {
+const sync_file = (arr, password, path = null) => {
+    if (path) {
+        encryption_file_path = path;
+    } else {
+        encryption_file_path = DEFAULT_PATH;
+    }
+
+    console.log("encryption: ", password, encryption_file_path);
+
     const encoding = arr.reduce(
         (acc, e) => `${acc}${encode_obj(e, password)}\n`,
         ""
@@ -139,7 +149,15 @@ const sync_file = (arr, password) => {
     fs.writeFileSync(encryption_file_path, encoding);
 };
 
-const decrypt_file = (password) => {
+const decrypt_file = (password, path = null) => {
+    if (path) {
+        encryption_file_path = path;
+    } else {
+        encryption_file_path = DEFAULT_PATH;
+    }
+
+    console.log("decryption: ", password, encryption_file_path);
+
     const cypher = fs.readFileSync(encryption_file_path, {
         encoding: "utf8",
     });

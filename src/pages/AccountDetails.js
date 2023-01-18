@@ -8,12 +8,12 @@ import SearchBar from "../components/SearchBar.js";
 const AccountDetails = () => {
     const { state } = useLocation();
     const { password, file } = state;
-    const [accounts, setAccounts] = useState(hash.decrypt_file(password));
+    const [accounts, setAccounts] = useState(
+        hash.decrypt_file(password, file.path)
+    );
     const [searchInput, setSearchInput] = useState("");
     const [filteredAccounts, setFilteredAccounts] = useState(accounts);
     const [hideDetails, setHideDetails] = useState(true);
-
-    // console.log("this is your file: ", file);
 
     useEffect(() => {
         const res = accounts.filter((e) =>
@@ -34,8 +34,8 @@ const AccountDetails = () => {
     };
 
     const writeFile = (accounts) => {
-        hash.sync_file(accounts, password);
-        setAccounts(hash.decrypt_file(password));
+        hash.sync_file(accounts, password, file.path);
+        setAccounts(hash.decrypt_file(password, file.path));
     };
 
     const updateAccount = (account, newAccount) => {
@@ -54,6 +54,7 @@ const AccountDetails = () => {
                 accounts={accounts}
                 password={password}
                 setAccounts={setAccounts}
+                writeFile={writeFile}
             />
             <SearchBar
                 accounts={accounts}
