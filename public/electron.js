@@ -1,6 +1,6 @@
 const path = require("path");
 const { app, BrowserWindow } = require("electron");
-const isDev = require("electron-is-dev");
+// const isDev = require("electron-is-dev");
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -23,6 +23,8 @@ function createWindow() {
             ? "http://localhost:3000"
             : `file://${path.join(__dirname, "../build/index.html")}`
     );
+
+    win.loadURL(`file://${path.join(__dirname, "../build/index.html")}`);
 
     // if (isDev) win.webContents.openDevTools({ mode: 'detach' })
 }
