@@ -4,6 +4,7 @@
   "private": true,
   "description": "Bad Password Manager",
   "license": "MIT",
+  "author": "",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
