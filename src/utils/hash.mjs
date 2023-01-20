@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import crypto from "crypto-browserify";
 
 const fs = window.require("original-fs");
 const path = window.require("path");
