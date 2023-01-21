@@ -3,25 +3,20 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import AccountDetails from "./pages/AccountDetails";
-
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Home />,
-    },
-    {
-        path: "/account-details",
-        element: <AccountDetails />,
-    },
-]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        {/* <RouterProvider router={router} /> */}
+        <HashRouter>
+            <Routes>
+                <Route path="/" exact element={<Home/>}/>
+                <Route path="/account-details" element={<AccountDetails/>}/>
+            </Routes>
+        </HashRouter>
     </React.StrictMode>
 );
 

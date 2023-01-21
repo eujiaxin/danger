@@ -18,15 +18,11 @@ function createWindow() {
 
     win.maximize();
 
-    // win.loadURL(
-    //     isDev
-    //         ? "http://localhost:3000"
-    //         : `file://${path.join(__dirname, "../build/index.html")}`
-    // );
+    // win.loadURL('http://localhost:3000#/') // uncomment for development
 
-    win.loadURL(`file://${path.join(__dirname, "../build/index.html")}`);
+    win.loadURL(`file://${path.join(__dirname, "../build/index.html#/")}`); // uncomment for production
 
-    // if (isDev) win.webContents.openDevTools({ mode: 'detach' })
+    // win.webContents.openDevTools({ mode: 'detach' })
 }
 
 app.whenReady().then(createWindow);
